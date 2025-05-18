@@ -30,26 +30,36 @@ def read_gps():
         print(buses)
     return buses
 
+bus_at_stop = set()  # Tracks buses currently inside the stop zone
+
 def track():
-    seen = set()
     while True:
         now = datetime.datetime.now()
-        if now.hour == 0 and now.minute > 0:
+        if now.hour == 9 and now.minute > 2:
             print("Done for the day.")
             break
 
+        current_buses = set()
         for lat, lon, vehicle_id in read_gps():
             for stop_name, stop_coords in [("Zoo", ZOO), ("Toompark", TOOMPARK)]:
                 distance = haversine(lat, lon, *stop_coords)
-                print(distance)
+                key = (vehicle_id, stop_name)
                 if distance < DISTANCE_THRESHOLD:
-                    print("found one")
-                    key = (vehicle_id, stop_name)
-                    if key not in seen:
-                        seen.add(key)
-                        print(f"🚌 {vehicle_id} at {stop_name} - {now}")
+                    current_buses.add(key)
+
+                    if key not in bus_at_stop:
+                        # Bus just arrived
+                        print(f"🟢 {vehicle_id} ARRIVED at {stop_name} at {now}")
                         with open(LOG_FILE, "a", encoding="utf-8") as f:
-                            f.write(f"{now},{stop_name},{vehicle_id},detected\n")
+                            f.write(f"{now},{stop_name},{vehicle_id},arrived\n")
+                elif key in bus_at_stop:
+                    # Bus just left
+                    print(f"🔴 {vehicle_id} DEPARTED from {stop_name} at {now}")
+                    with open(LOG_FILE, "a", encoding="utf-8") as f:
+                        f.write(f"{now},{stop_name},{vehicle_id},departed\n")
+
+        bus_at_stop.clear()
+        bus_at_stop.update(current_buses)
         time.sleep(5)
 
 if __name__ == "__main__":
