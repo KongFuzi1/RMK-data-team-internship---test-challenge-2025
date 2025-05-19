@@ -1,10 +1,18 @@
+""" Geospatial Utility Functions """
+
 import math
 
 def haversine(lat1, lon1, lat2, lon2):
     """
-    Calculates the great-circle distance between two points on the Earth
+    Calculates the great-circle distance between two points on the Earth's surface
     using the Haversine formula.
-    Returns distance in meters.
+
+    Parameters:
+        lat1, lon1 (float): Latitude and longitude of point 1.
+        lat2, lon2 (float): Latitude and longitude of point 2.
+
+    Returns:
+        float: Distance between the two points in meters.
     """
     R = 6371000  # Earth radius in meters
     phi1, phi2 = math.radians(lat1), math.radians(lat2)

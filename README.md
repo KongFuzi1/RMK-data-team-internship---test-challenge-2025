@@ -34,6 +34,20 @@ Let P(Bus #2 arrives after 9:01:00) → probability of being late if she misses 
 
 Total lateness probability: P_late = (1 - P_catch_Bus1) × P_Bus2_late
 
+## ⚠️ Problems Encountered
+
+During data collection, I discovered a discrepancy in the official timetable for bus number 8.
+
+According to the schedule:
+
+A bus that departs from Zoo at 8:38 is expected to arrive at Toompark at 8:51.
+
+However, based on real-time tracking:
+
+That same bus actually arrived at Toompark at 9:02, 11 minutes later than scheduled.
+
+This indicates that the published schedule may be inaccurate or outdated, at least during morning rush hours. Because of this, the model avoids relying on scheduled arrival times and instead uses observed data from GPS tracking.
+
 ## 📁 Project Structure
 
 rmk-bus-challenge-2025/
