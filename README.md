@@ -12,27 +12,34 @@ This solution models Rita’s probability of being late to her 9:05 AM meeting b
 
 ## 🚍 Core Idea
 
-Two key buses:
+The initial assumption was based on the official bus timetable, which suggested:
 
-Bus #1 — Leaves Zoo at 8:38, arrives Toompark at 8:51 (safe option).
+Bus #1 — Leaves Zoo at 8:38, arrives Toompark at 8:51 (safe option)
 
-Bus #2 — Leaves Zoo at 8:48, arrives Toompark at exactly 9:01 (risky option).
+Bus #2 — Leaves Zoo at 8:48, arrives Toompark at 9:01 (risky option)
 
-Rita walks 5 minutes to the Zoo stop. Her chance of being on time depends on:
+However, real-time tracking revealed that these scheduled times are not accurate. For example, the bus scheduled to arrive at Toompark at 8:51 actually arrived at 9:01, showing a 10-minute deviation.
 
-Whether she catches Bus #1, which may sometimes depart early.
+As a result, the model no longer relies on the published timetable, but instead uses real observed arrival and departure times, which are logged automatically from GPS data.
 
-If she misses it, whether Bus #2 is even a second late, in which case she will be late.
+Rita walks 5 minutes to the Zoo stop. Whether she arrives at her 9:05 meeting depends on:
+
+If she catches a bus that arrives at Toompark on or before 9:01
+
+And whether that bus is actually on time, according to tracking data
 
 ## 🎲 Probability Model
 
-Let t_arrive be the time Rita arrives at the Zoo stop.
+Let t_arrive be the time Rita arrives at the Zoo stop (based on her home departure time).
 
-Calculate P(Bus #1 departs after t_arrive) → probability she catches Bus #1.
+We calculate:
 
-Let P(Bus #2 arrives after 9:01:00) → probability of being late if she misses Bus #1.
+P_catch_Bus1: The probability that a bus from Zoo departs at or after t_arrive
 
-Total lateness probability: P_late = (1 - P_catch_Bus1) × P_Bus2_late
+P_Bus2_arrives_late: The probability that the next available bus arrives at Toompark after 9:01:00
+
+Then we compute:
+P_late = (1 - P_catch_Bus1) × P_Bus2_arrives_late
 
 ## ⚠️ Problems Encountered
 
