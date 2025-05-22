@@ -58,11 +58,11 @@ def track():
     - Detects if a bus enters or leaves the stop zone (within defined distance threshold),
     - Logs arrival/departure events to a CSV file with timestamps.
 
-    Stops tracking automatically after 09:05 AM.
+    Stops tracking automatically after 09:10 AM.
     """
     while True:
         now = datetime.datetime.now()
-        if now.hour == 9 and now.minute > 10:  # Stop tracking after 09:05
+        if now.hour == 9 and now.minute > 10:  # Stop tracking after 09:10
             print("Done for the day.")
             break
 
