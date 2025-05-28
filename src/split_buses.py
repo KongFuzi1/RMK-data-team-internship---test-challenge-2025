@@ -1,3 +1,5 @@
+""" Split first 3 buses per day into separate CSV files """
+
 import pandas as pd
 
 def split_buses(file_path="data/clean_bus_times.csv"):
@@ -26,6 +28,8 @@ def split_buses(file_path="data/clean_bus_times.csv"):
 
                 # Get matching Toompark record for same bus
                 match = toom_df[(toom_df["vehicle_id"] == vehicle_id) & (toom_df["date"] == date)]
+                if match.empty:
+                    print(f"⚠️ No Toompark match for bus {vehicle_id} on {date}")
 
                 combined = pd.concat([pd.DataFrame([row]), match])
                 bus_groups[label].append(combined)
@@ -36,4 +40,6 @@ def split_buses(file_path="data/clean_bus_times.csv"):
         result_df.to_csv(f"data/{label}.csv", index=False)
         print(f"✅ Saved {label} data to data/{label}.csv")
 
-split_buses()
+# Run as a script
+if __name__ == "__main__":
+    split_buses()

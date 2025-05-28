@@ -7,7 +7,7 @@ from compute_lateness_probabilities import compute_lateness_probabilities
 
 def plot_lateness_graph():
     data = compute_lateness_probabilities()
-
+    print(data)
     # Convert time strings to datetime objects
     times = [datetime.strptime(t, "%H:%M:%S") for t, _ in data]
     probs = [p for _, p in data]

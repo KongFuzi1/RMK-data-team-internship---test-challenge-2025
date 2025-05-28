@@ -1,4 +1,4 @@
-""" Track Bus Arrivals/Departures for Bus Line 8 """
+""" Track bus arrivals and departures for Bus Line 8 """
 
 import time
 import datetime
@@ -91,5 +91,6 @@ def track():
 
         time.sleep(5)
 
+# Run as a script
 if __name__ == "__main__":
     track()
