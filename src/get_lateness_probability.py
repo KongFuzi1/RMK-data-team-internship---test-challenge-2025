@@ -12,8 +12,6 @@ def get_lateness_probability_from_home_departure():
     b3 = pd.read_csv("data/bus_3.csv", parse_dates=["mid_time"])
 
     # Get user input
-    user_input = input("🏠 Enter the time Rita leaves home (format HH:MM:SS): ")
-
     while True:
         user_input = input("🏠 Enter the time Rita leaves home (HH:MM:SS): ")
         try:
