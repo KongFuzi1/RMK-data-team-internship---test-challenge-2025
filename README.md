@@ -4,7 +4,7 @@ This project addresses the RMK Data Team internship test challenge. The goal is 
 
 ## 🎯 Objective
 
-Rita travels every weekday from **Zoo** to **Toompark**. She walks 5 minutes to the Zoo bus stop. If she reaches **Toompark by 9:01**, she’ll be on time.  
+Rita travels every weekday from **Zoo** to **Toompark**. She walks 5 minutes to the Zoo bus stop. If she reaches **Toompark by 9:01:00**, she’ll be on time.  
 The task is to simulate and visualize how her **lateness probability** depends on her departure time.
 
 ## 💡 Approach
@@ -22,7 +22,7 @@ We:
 
 For any time Rita leaves home, we:
 - Determine if she can catch an available bus
-- Estimate if that bus will arrive **on or before 9:01**
+- Estimate if that bus will arrive **on or before 9:01:00**
 - Compute:
     P_late = (1 - P_catch) × P_arrive_late
 
