@@ -36,6 +36,7 @@ def convert_bus_data(input_path="data/bus_arrivals.csv", output_path="data/clean
                 "mid_time": mid_time,
                 "date": mid_time.date()
             })
+
     # Convert to DataFrame and save to CSV
     clean_df = pd.DataFrame(output)
     clean_df.to_csv(output_path, index=False)
