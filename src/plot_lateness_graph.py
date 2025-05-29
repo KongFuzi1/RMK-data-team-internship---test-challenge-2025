@@ -34,7 +34,7 @@ def plot_lateness_graph():
 
     # Labels and styling
     plt.xlabel("Time Rita leaves home")
-    plt.ylabel("Probability of Rita being late to meeting)")
+    plt.ylabel("Probability of Rita being late to meeting")
     plt.title("Probability of Being Late vs Time Leaving Home")
     plt.ylim(0, 1.05)
     plt.grid(True, linestyle=":", alpha=0.3)
