@@ -34,6 +34,11 @@ For any time Rita leaves home, we:
 
 The scheduled 8:38 bus was expected at Toompark by 8:51. In reality, it arrived at **9:02**, meaning Rita would be late. Hence, the model discards the timetable and uses **observed data only**.
 
+## 🧭 Project Structure
+
+Each script in `src/` is modular and documented.  
+The file `src/__init__.py` contains a summary of each module's role in the project.
+
 ## ✅ How to Run
 
 ```bash
